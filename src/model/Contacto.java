@@ -47,11 +47,7 @@ public class Contacto {
     // CAMBIO: toString actualizado
     @Override
     public String toString() {
-        return "Contacto{" +
-                "nombre='" + firstname + '\'' +
-                ", apellido='" + lastname + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
+        return firstname + " " + lastname + " - " + telefono;
     }
 
     // CAMBIO: La igualdad ahora depende del nombre y apellido

@@ -20,11 +20,19 @@ public class AgendaService {
         this(10);
     }
 
-    // Añadir contacto si hay espacio y no es duplicado
+    // Añadir contacto si hay espacio, no es duplicado y tiene nombre y apellido válidos
     public boolean añadirContacto(Contacto c) {
+        // Validar que nombre y apellido no estén vacíos
+        if (c.getFirstname().trim().isEmpty() || c.getLastname().trim().isEmpty()) {
+            return false;
+        }
+
+        // Validar que la agenda no esté llena y que el contacto no exista
         if (agendaLlena() || contactos.containsKey(c.getFullName())) {
             return false;
         }
+
+        // Agregar contacto
         contactos.put(c.getFullName(), c);
         return true;
     }

@@ -39,10 +39,17 @@ public class GestorAgenda {
                         String telefonoAdd = sc.nextLine();
 
                         Contacto nuevoContacto = new Contacto(firstnameAdd, lastnameAdd, telefonoAdd);
+
                         if (agendaService.añadirContacto(nuevoContacto)) {
                             System.out.println("✅ Contacto añadido correctamente.");
                         } else {
-                            System.out.println("❌ No se pudo añadir. La agenda puede estar llena o el contacto ya existe.");
+                            if (firstnameAdd.trim().isEmpty() || lastnameAdd.trim().isEmpty()) {
+                                System.out.println("❌ No se pudo añadir. El nombre y apellido no pueden estar vacíos.");
+                            } else if (agendaService.agendaLlena()) {
+                                System.out.println("❌ No se pudo añadir. La agenda está llena.");
+                            } else {
+                                System.out.println("❌ No se pudo añadir. Ya existe un contacto con ese nombre y apellido.");
+                            }
                         }
                         break;
 

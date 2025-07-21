@@ -10,11 +10,10 @@ public class GestorAgenda {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        AgendaService agendaService = new AgendaService(5);
+        AgendaService agendaService = new AgendaService(5); // Creamos el servicio con tamaño 5 para probar
         int opcion = 0;
 
         while (opcion != 8) {
-            // ... (El menú se imprime igual)
             System.out.println("\n--- MENÚ DE AGENDA TELEFÓNICA ---");
             System.out.println("1. Añadir contacto");
             System.out.println("2. Listar contactos");
@@ -31,7 +30,6 @@ public class GestorAgenda {
 
                 switch (opcion) {
                     case 1:
-                        // CAMBIO: Pedimos nombre y apellido por separado
                         System.out.print("Introduce el nombre: ");
                         String firstnameAdd = sc.nextLine();
                         System.out.print("Introduce el apellido: ");
@@ -47,8 +45,19 @@ public class GestorAgenda {
                         }
                         break;
 
-                    case 3: // Buscar Contacto
-                        // CAMBIO: Pedimos ambos para buscar
+                    case 2:
+                        Collection<Contacto> lista = agendaService.listarContactos();
+                        if (lista.isEmpty()) {
+                            System.out.println("La agenda está vacía.");
+                        } else {
+                            System.out.println("--- Lista de Contactos ---");
+                            for (Contacto c : lista) {
+                                System.out.println("➡️ " + c.toString());
+                            }
+                        }
+                        break;
+
+                    case 3:
                         System.out.print("Introduce el nombre a buscar: ");
                         String firstnameSearch = sc.nextLine();
                         System.out.print("Introduce el apellido a buscar: ");
@@ -63,8 +72,7 @@ public class GestorAgenda {
                         }
                         break;
 
-                    case 4: // Eliminar Contacto
-                        // CAMBIO: Pedimos ambos para eliminar
+                    case 4:
                         System.out.print("Introduce el nombre del contacto a eliminar: ");
                         String firstnameDelete = sc.nextLine();
                         System.out.print("Introduce el apellido del contacto a eliminar: ");
@@ -78,7 +86,38 @@ public class GestorAgenda {
                         }
                         break;
 
-                    // ... Los otros casos (listar, espacios libres, etc.) no necesitan grandes cambios.
+                    case 5:
+                        if (agendaService.agendaLlena()) {
+                            System.out.println("La agenda está llena.");
+                        } else {
+                            System.out.println("La agenda aún tiene espacio.");
+                        }
+                        break;
+
+                    case 6:
+                        System.out.println("ℹ️ Quedan " + agendaService.getEspaciosLibres() + " espacios libres.");
+                        break;
+
+                    case 7:
+                        System.out.print("Introduce el nombre a comprobar: ");
+                        String firstnameExist = sc.nextLine();
+                        System.out.print("Introduce el apellido a comprobar: ");
+                        String lastnameExist = sc.nextLine();
+                        String fullNameExist = firstnameExist + " " + lastnameExist;
+
+                        if (agendaService.buscarContacto(fullNameExist) != null) {
+                            System.out.println("✔️ Sí, el contacto '" + fullNameExist + "' existe en la agenda.");
+                        } else {
+                            System.out.println("❌ No, el contacto '" + fullNameExist + "' no existe.");
+                        }
+                        break;
+
+                    case 8:
+                        System.out.println("¡Hasta luego!");
+                        break;
+
+                    default:
+                        System.out.println("Opción no válida. Inténtalo de nuevo.");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Error: Por favor, introduce un número válido.");

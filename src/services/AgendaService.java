@@ -29,25 +29,43 @@ public class AgendaService {
         return true;
     }
 
+    // Buscar contacto
     public Contacto buscarContacto(String fullName) {
         // CAMBIO: El parámetro ahora es el nombre completo
         return contactos.get(fullName);
     }
-
+    // Eliminar contacto
     public boolean eliminarContacto(String fullName) {
         // CAMBIO: El parámetro ahora es el nombre completo
         return contactos.remove(fullName) != null;
     }
-
+    //Lista de contactos
     public Collection<Contacto> listarContactos() {
         return contactos.values();
     }
 
+    //Verifica si la agenda está llena
     public boolean agendaLlena() {
         return contactos.size() >= tamanoMaximo;
     }
-
+    // Devuelve el número de espacios libres
     public int getEspaciosLibres() {
         return tamanoMaximo - contactos.size();
     }
+
+    // Verifica si un contacto existe
+    public boolean existeContacto(String fullName) {
+        return contactos.containsKey(fullName);
+    }
+
+    // Modificar teléfono de un contacto
+    public boolean modificarTelefono(String fullName, String nuevoTelefono) {
+        Contacto c = contactos.get(fullName);
+        if (c != null) {
+            c.setTelefono(nuevoTelefono);
+            return true;
+        }
+        return false;
+    }
+
 }

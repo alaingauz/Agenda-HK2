@@ -17,9 +17,6 @@ public class GestorAgenda {
             // ... (El menú se imprime igual)
             System.out.println("\n--- MENÚ DE AGENDA TELEFÓNICA ---");
             System.out.println("1. Añadir contacto");
-            // 3. Mostrar opciones al usuario
-            System.out.println("\n--- MENÚ DE AGENDA TELEFÓNICA ---");
-            System.out.println("1. Añadir contacto");
             System.out.println("2. Listar contactos");
             System.out.println("3. Buscar contacto");
             System.out.println("4. Eliminar contacto");

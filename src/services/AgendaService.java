@@ -64,11 +64,6 @@ public class AgendaService {
         return tamanoMaximo - contactos.size();
     }
 
-    // Verificar si un contacto existe
-    public boolean existeContacto(String fullName) {
-        return contactos.containsKey(fullName);
-    }
-
     // Modificar teléfono
     public boolean modificarTelefono(String fullName, String nuevoTelefono) {
         Contacto c = contactos.get(fullName);

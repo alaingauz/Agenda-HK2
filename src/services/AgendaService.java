@@ -152,4 +152,13 @@ public class AgendaService {
 
         return resultados;
     }
+    public void modificarContacto (String nombre, String nuevoTelefono){
+       Contacto cambio = contactos.get(nombre.toLowerCase());
+       if (cambio != null){
+           cambio.setTelefono(nuevoTelefono);
+           System.out.println("Contacto " + nombre + "actualizado");
+       } else {
+           System.out.println("No se enbcontro ningun contacto con el nombre " + nombre);
+        }
+    }
 }

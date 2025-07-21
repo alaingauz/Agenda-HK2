@@ -13,7 +13,7 @@ public class GestorAgenda {
         AgendaService agendaService = new AgendaService(5); // Creamos el servicio con tamaño 5 para probar
         int opcion = 0;
 
-        while (opcion != 8) {
+        while (opcion != 9) {
             System.out.println("\n--- MENÚ DE AGENDA TELEFÓNICA ---");
             System.out.println("1. Añadir contacto");
             System.out.println("2. Listar contactos");
@@ -22,7 +22,8 @@ public class GestorAgenda {
             System.out.println("5. Ver si la agenda está llena");
             System.out.println("6. Ver espacios libres");
             System.out.println("7. Comprobar si un contacto existe");
-            System.out.println("8. Salir");
+            System.out.println("8. Modificar un contacto");
+            System.out.println("9. Salir");
             System.out.print("Elige una opción: ");
 
             try {
@@ -111,8 +112,16 @@ public class GestorAgenda {
                             System.out.println("❌ No, el contacto '" + fullNameExist + "' no existe.");
                         }
                         break;
-
                     case 8:
+                        System.out.print("Introduce el nombre del contacto a modificar: ");
+                        String nombreModificar = sc.nextLine();
+                        System.out.print("Introduce el nuevo teléfono: ");
+                        String nuevoTelefono = sc.nextLine();
+                        agendaService.modificarContacto(nombreModificar,nuevoTelefono);
+                        break;
+
+
+                    case 9:
                         System.out.println("¡Hasta luego!");
                         break;
 

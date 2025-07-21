@@ -115,9 +115,16 @@ public class GestorAgenda {
                     case 8:
                         System.out.print("Introduce el nombre del contacto a modificar: ");
                         String nombreModificar = sc.nextLine();
+                        System.out.print("Introduce el apellido del contacto a modificar: ");
+                        String apellidoModificar = sc.nextLine();
+                        String fullNameMod = nombreModificar + " " + apellidoModificar;
                         System.out.print("Introduce el nuevo teléfono: ");
                         String nuevoTelefono = sc.nextLine();
-                        agendaService.modificarContacto(nombreModificar,nuevoTelefono);
+                        if (agendaService.modificarTelefono(fullNameMod, nuevoTelefono)) {
+                            System.out.println("Contacto actualizado correctamente.");
+                        } else {
+                            System.out.println("No se encontró el contacto para modificar.");
+                        }
                         break;
 
 

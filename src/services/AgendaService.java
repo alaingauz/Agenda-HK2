@@ -15,10 +15,6 @@ public class AgendaService {
         this.tamanoMaximo = tamanoMaximo;
     }
 
-    // Constructor por defecto (10 contactos)
-    public AgendaService() {
-        this(10);
-    }
 
     // Añadir contacto si hay espacio, no es duplicado y tiene nombre y apellido válidos
     public boolean añadirContacto(Contacto c) {
@@ -70,11 +66,6 @@ public class AgendaService {
     // Espacios libres disponibles
     public int getEspaciosLibres() {
         return tamanoMaximo - contactos.size();
-    }
-
-    // Verificar si un contacto existe
-    public boolean existeContacto(String fullName) {
-        return contactos.containsKey(fullName);
     }
 
     // Modificar teléfono
